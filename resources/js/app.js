@@ -125,7 +125,6 @@ async function resetData() {
   }
 }
 
-// Vite でもグローバルで呼べるように window にセット
 window.resetData = resetData;
 
 
@@ -181,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const newRecord = await response.json();
 
-      // 画面にも追加
       records.push(newRecord);
       drawCharts(records);
 
