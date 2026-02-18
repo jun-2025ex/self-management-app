@@ -9,9 +9,6 @@ use Carbon\Carbon;
 
 class RecordSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $categories = ['food', 'sleep', 'exercise', 'study'];
