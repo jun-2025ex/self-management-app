@@ -1,0 +1,31 @@
+html, body{
+  height:100%;
+  margin:0;
+  overflow:hidden;
+}
+
+.menu-item:hover{
+  background:#e6eef1;
+}
+
+.menu-item.active{
+  background:#DBFFFF;
+  font-weight:bold;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.sidebar{
+  width:200px;
+  background:#A3E4E4;
+  padding:20px;
+  height:100vh;
+  box-sizing:border-box;
+}
+
+.grid > *{
+  min-height:0;
+}
+
+h2, h3{
+  margin-top:0;
+}

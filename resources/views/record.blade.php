@@ -1,0 +1,103 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="record-wrapper flex flex-col gap-5 h-full">
+  <h2 class="text-xl font-bold">記録</h2>
+
+  <!-- カテゴリ -->
+  <div class="category-tabs flex gap-2.5">
+    <button class="tab active px-4 py-1.5 rounded-lg border border-[#8FC8C8] bg-[#8FC8C8] cursor-pointer transition hover:bg-gray-100" data-category="food">食事</button>
+    <button class="tab px-4 py-1.5 rounded-lg border border-[#8FC8C8] bg-[#8FC8C8] cursor-pointer transition hover:bg-gray-100" data-category="sleep">睡眠</button>
+    <button class="tab px-4 py-1.5 rounded-lg border border-[#8FC8C8] bg-[#8FC8C8] cursor-pointer transition hover:bg-gray-100" data-category="exercise">運動</button>
+    <button class="tab px-4 py-1.5 rounded-lg border border-[#8FC8C8] bg-[#8FC8C8] cursor-pointer transition hover:bg-gray-100" data-category="study">勉強</button>
+  </div>
+
+  <!-- 検索 + 新規登録 -->
+  <div class="record-toolbar flex justify-between items-center">
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="検索したい内容を入力してください・・・"
+        class="w-80 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-gray-500"
+      >
+    </div>
+    
+    <div class="toolbar-buttons flex gap-2.5">
+      <button class="danger bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="resetData()">データ削除</button>
+      <button class="primary bg-black text-white px-4 py-2 rounded-md hover:opacity-80 transition" onclick="openModal()">新規登録</button>
+    </div>
+  </div>
+
+  <!-- テーブル -->
+  <div class="overflow-y-auto">
+    <table class="record-table w-full bg-white rounded-lg overflow-y-auto shadow">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" id="checkAll">
+          </th>
+          <th>No</th>
+          <th>日付</th>
+          <th>内容</th>
+          <th>数値</th>
+        </tr>
+      </thead>
+
+      <tbody id="recordTable">
+        @foreach($records as $record)
+        <tr data-id="{{ $record->id }}" data-category="{{ $record->category }}">
+            <td><input type="checkbox" class="recordCheck"></td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ \Carbon\Carbon::parse($record->date)->format('Y-m-d') }}</td>
+            <td>{{ $record->content }}</td>
+            <td>{{ $record->value }}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+
+  <!-- モーダル -->
+  <div id="modal" class="modal hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="modal-content w-[380px] bg-white rounded-2xl shadow-2xl p-7 animate-[modalFade_.2s_ease]">
+      <div class="modal-header flex justify-between items-center mb-5">
+        <h3>新規登録</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+
+      <form id="recordForm" class="modal-form flex flex-col gap-4">
+        <div class="form-group category-display">
+          <label>カテゴリ</label>
+          <div id="modalCategoryLabel" class="category-chip">食事</div>
+        </div>
+
+        <div class="form-group">
+          <label>日付</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>内容</label>
+          <textarea id="content" placeholder="例：朝ごはん・ランニングなど" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>数値</label>
+          <input type="number" id="value" placeholder="例：500" required>
+        </div>
+
+        <div class="modal-buttons flex justify-end gap-2.5 mt-2">
+          <button type="button" class="btn-secondary bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300" onclick="closeModal()">キャンセル</button>
+          <button type="submit" class="primary">登録</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+const records = @json($records);
+</script>
+
+@endsection

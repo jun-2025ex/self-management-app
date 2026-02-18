@@ -1,0 +1,110 @@
+.tab.active{
+  background:#DBFFFF;
+  border-color:#888;
+}
+
+.primary:hover{
+  opacity:0.85;
+}
+
+.record-table th{
+  text-align:left;
+  border-bottom:2px solid #ddd;
+  padding:12px 8px;
+  font-size:14px;
+  color:#555;
+}
+
+.record-table td{
+  border-bottom:1px solid #eee;
+  padding:12px 8px;
+  font-size:14px;
+}
+
+.record-table tbody tr:hover{
+  background:#fafafa;
+}
+
+.modal-header h3{
+  margin:0;
+  font-size:18px;
+}
+
+.modal-close{
+  border:none;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
+  opacity:0.6;
+}
+
+.modal-close:hover{
+  opacity:1;
+}
+
+.modal-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.modal.hidden{
+  display:none;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group label{
+  font-size:13px;
+  color:#666;
+}
+
+.category-chip{
+  display:inline-block;
+  padding:4px 12px;
+  background:#eee;
+  border-radius:20px;
+  font-size:13px;
+}
+
+.modal-form input,
+.modal-form textarea{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+  outline:none;
+}
+
+.modal-form textarea{
+  resize:none;
+  height:80px;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus{
+  border-color:black;
+}
+
+.btn-secondary:hover{
+  background:#ddd;
+}
+
+.danger:hover{
+  background:#d9363e;
+}
+
+@keyframes modalFade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
